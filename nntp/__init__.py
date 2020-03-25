@@ -1,4 +1,4 @@
-from nntp import (
+from nntp.nntp import (
     NNTPError,
     NNTPReplyError,
     NNTPTemporaryError,

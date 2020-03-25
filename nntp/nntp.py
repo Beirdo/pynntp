@@ -21,12 +21,12 @@ import ssl
 import zlib
 import socket
 import datetime
-import cStringIO
-import utils
-import iodict
-import fifo
-import yenc
-import date
+from io import StringIO
+from nntp import utils
+from nntp import iodict
+from nntp import fifo
+from nntp import yenc
+from nntp import date
 
 
 class NNTPError(Exception):
@@ -424,7 +424,7 @@ class BaseNNTPClient(object):
             cmd += " " + args
         cmd += "\r\n"
 
-        self.socket.sendall(cmd)
+        self.socket.sendall(cmd.encode("utf-8"))
 
         try:
             code, message = self.status()
@@ -1328,7 +1328,7 @@ class NNTPClient(BaseNNTPClient):
         self.socket.sendall(hdrs)
 
         if isinstance(body, basestring):
-            body = cStringIO.StringIO(body)
+            body = StringIO(body)
 
         # send body
         illegal = False

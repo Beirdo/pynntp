@@ -25,7 +25,12 @@ class Fifo(object):
 
     def __init__(self, data="", eol="\r\n"):
 
+        if isinstance(data, str):
+            data = data.encode("utf-8")
         self.buf = data
+
+        if isinstance(eol, str):
+            eol = eol.encode("utf-8")
         self.eol = eol
         self.buflist = []
         self.pos = 0
@@ -46,12 +51,12 @@ class Fifo(object):
 
     def __append(self):
 
-        self.buf += "".join(self.buflist)
+        self.buf += b"".join(self.buflist)
         self.buflist = []
 
     def clear(self):
 
-        self.buf = ""
+        self.buf = b""
         self.buflist = []
         self.pos = 0
 

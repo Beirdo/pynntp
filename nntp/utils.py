@@ -17,8 +17,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
-import cStringIO
-import iodict
+from io import StringIO
+from nntp import iodict
 
 def unparse_msgid_article(obj):
     """Unparse a message-id or article number argument.
@@ -191,7 +191,7 @@ def parse_headers(obj):
             cannot be parsed.
     """
     if isinstance(obj, basestring):
-        obj = cStringIO.StringIO(obj)
+        obj = StringIO(obj)
     hdrs = []
     for line in obj:
         hdr = parse_header(line)

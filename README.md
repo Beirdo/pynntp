@@ -13,6 +13,8 @@ Meaning that memory use is minimal (even for the largest responses) and that
 cycles aren't being wasted waiting on a blocking read (even in a single threaded
 application)
 
+Recently tweaked to be usable in Python3
+
 
 Example
 -------
