@@ -243,6 +243,8 @@ class BaseNNTPClient(object):
         self.__generating = True
 
         for line in self.__line_gen():
+            if isinstance(line, bytes):
+                line = line.decode("utf-8")
             if line == ".\r\n":
                 break
             if line.startswith("."):
@@ -438,6 +440,8 @@ class BaseNNTPClient(object):
                 raise NNTPReplyError(code, message)
             code, message = self.command(verb, args)
 
+        if isinstance(message, bytes):
+            message = message.decode("utf-8")
         return code, message
 
     def close(self):
